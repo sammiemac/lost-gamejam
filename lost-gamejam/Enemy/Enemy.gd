@@ -12,10 +12,10 @@ func _ready():
 func _on_EnemyCollision_body_entered(body):
 	if body.is_in_group("Player"):
 		emit_signal("player_hit")
-		print("player hit")
+		print("player hit enemy")
 
 
 func _on_EnemyCollision_body_exited(body):
 	if body.is_in_group("Player"):
 		emit_signal("player_leave")
-		print("player leave")
+		print("player leave enemy")

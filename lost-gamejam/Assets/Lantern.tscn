@@ -18,11 +18,8 @@ __meta__ = {
 }
 
 [node name="Light2D" type="Light2D" parent="."]
-scale = Vector2( 0.125, 0.125 )
+scale = Vector2( 0.103516, 0.103516 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="EnemyDetect" type="Area2D" parent="."]
 collision_layer = 4

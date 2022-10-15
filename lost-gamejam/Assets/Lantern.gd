@@ -9,14 +9,12 @@ signal enemy_exit
 
 
 func _on_EnemyDetect_body_entered(body):
-	print("latern body enter")
 	if body.is_in_group("Enemy"):
-		print("enemy entered")
+		print("enemy enter lantern")
 		emit_signal("enemy_enter")
 
 
 func _on_EnemyDetect_body_exited(body):
-	print("latern body exit")
 	if body.is_in_group("Enemy"):
-		print("enemy exit")
+		print("enemy exit lantern")
 		emit_signal("enemy_exit")
