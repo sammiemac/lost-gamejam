@@ -10,7 +10,7 @@ var hit_player = false
 
 
 func _ready():
-	$AnimationPlayer.play("hover")
+	$AnimationPlayer.play("fade in")
 
 
 func _physics_process(delta):
@@ -68,7 +68,7 @@ func _physics_process(delta):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
 #		print("player enter")
-		$AnimationPlayer.play("transition")
+		$AnimationPlayer.play("fade out")
 		Input.action_release("down")
 		Input.action_release("up")
 		Input.action_release("left")
@@ -76,5 +76,7 @@ func _on_Area2D_body_entered(body):
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "transition":
+	if anim_name == "fade in":
+		$AnimationPlayer.play("hover")
+	if anim_name == "fade out":
 		get_tree().change_scene("res://Levels/Scene1.tscn")

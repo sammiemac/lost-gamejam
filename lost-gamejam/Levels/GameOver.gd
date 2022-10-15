@@ -1,5 +1,19 @@
 extends Control
 
 
+onready var global = get_node("/root/Global")
+
+
+func _ready():
+	$AnimationPlayer.play("fade in")
+
+
 func _on_Button_pressed():
-	get_tree().change_scene("res://Levels/Level1.tscn")
+	print("pressed")
+	$AnimationPlayer.play("fade out")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "fade out":
+		if global.level == 2:
+			get_tree().change_scene("res://Levels/Level2.tscn")
