@@ -1,35 +1,36 @@
 extends KinematicBody2D
 
 
-export var velocity = Vector2(0,0)
-const PLAYER_SPEED = 300
-const PLAYER_JUMP = -700
+var velocity = Vector2(0,0)
+export var player_speed = 300
+export var player_jump = -700
 const GRAVITY = 30
 
-const FOLLOW_SPEED = 4.0
+var can_move = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
 	# Handles walking and idle animations and motion
-	if Input.is_action_pressed("right"):
-		velocity.x = PLAYER_SPEED
+	if Input.is_action_pressed("right") and can_move:
+		velocity.x = player_speed
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = true
-	elif Input. is_action_pressed("left"):
-		velocity.x = -PLAYER_SPEED
+	elif Input. is_action_pressed("left") and can_move:
+		velocity.x = -player_speed
 		$AnimatedSprite.play("walk")
 		$AnimatedSprite.flip_h = false
 	else:
+		#$AnimatedSprite.play("light")
 		$AnimatedSprite.play("idle")
 	
 	# Set fall speed
 	velocity.y = velocity.y + GRAVITY
 	
 	# Handles jumping and falling animations and motion
-	if Input.is_action_just_pressed("up") and is_on_floor():
-		velocity.y = PLAYER_JUMP
+	if Input.is_action_just_pressed("up") and is_on_floor() and can_move:
+		velocity.y = player_jump
 	
 	# Handles basic movement
 	velocity = move_and_slide(velocity, Vector2.UP, false)
@@ -37,7 +38,12 @@ func _physics_process(delta):
 	# When player stops, slow down motion
 	velocity.x = lerp(velocity.x, 0, 0.2)
 	
-	var player_pos = position
+	# Locks player movement if moving lantern
+	if Input.is_mouse_button_pressed(1):
+		$AnimatedSprite.play("light")
+		can_move = false
+	else:
+		can_move = true
 	
-	$Lantern.position = $Lantern.position.linear_interpolate(player_pos, delta*FOLLOW_SPEED)
 	
+
