@@ -5,12 +5,9 @@ onready var global = get_node("/root/Global")
 
 
 const FOLLOW_SPEED = 4.0
-const ENEMY_SPEED = 0.5
 var lantern_pos = Vector2(-2, 0)
 
 var level_complete = false
-var enemy_light = false
-var hit_player = false
 var use_light = -1 # -1 = reset
 
 
@@ -33,22 +30,6 @@ func _physics_process(delta):
 	else:
 		$Lantern.global_position = $Lantern.global_position.linear_interpolate(player_pos, delta*FOLLOW_SPEED) + lantern_pos
 		lantern_shrink()
-	
-#	# If the enemy is in the light, it stops
-#	if enemy_light:
-#		$Enemy/LanternDetect.disabled = false
-#		$Enemy/EnemyCollision/CollisionShape2D.disabled = true
-#		$Enemy/Platform.disabled = false
-#	else:
-#		$Enemy.global_position = $Enemy.global_position.linear_interpolate(player_pos, delta*ENEMY_SPEED)
-#		$Enemy/LanternDetect.disabled = true
-#		$Enemy/EnemyCollision/CollisionShape2D.disabled = false
-#		$Enemy/Platform.disabled = true
-	
-	if hit_player:
-		$Enemy/LanternDetect.disabled = true
-	else:
-		$Enemy/LanternDetect.disabled = false
 
 
 func lantern_grow():
@@ -68,26 +49,6 @@ func _on_Timer_timeout():
 	$AnimationPlayer.play("tut fade out")
 
 
-func _on_Lantern_enemy_enter():
-	$Enemy/AnimatedSprite.play("idle")
-	enemy_light = true
-
-
-func _on_Lantern_enemy_exit():
-	$Enemy/AnimatedSprite.play("default")
-	enemy_light = false
-
-
-func _on_Enemy_player_hit():
-	hit_player = true
-	$AnimationPlayer.play("damage_enemy")
-
-
-func _on_Enemy_player_leave():
-	hit_player = false
-	$AnimationPlayer.play("no_damage")
-
-
 func _on_Lantern_reset():
 	use_light = -1
 
@@ -95,6 +56,8 @@ func _on_Lantern_reset():
 func _on_Spike_body_entered(body):
 	if body.is_in_group("Player"):
 		$AnimationPlayer.play("damage_spike")
+		$Player.damaged = true
+		$Player.can_move = false
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -105,6 +68,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$AnimationPlayer.play("fade out")
 
 	if anim_name == "fade out" and not level_complete:
+		global.deaths += 1
 		get_tree().change_scene("res://Levels/GameOver.tscn")
 	elif anim_name == "fade out" and level_complete:
 #		print("change scene")

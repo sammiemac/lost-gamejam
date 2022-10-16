@@ -6,6 +6,7 @@ export var player_speed = 300
 export var player_jump = -700
 const GRAVITY = 30
 
+var damaged = false
 var can_move = true
 
 
@@ -42,8 +43,11 @@ func _physics_process(delta):
 	if Input.is_mouse_button_pressed(1):
 		$AnimatedSprite.play("light")
 		can_move = false
-	else:
+	elif not damaged:
 		can_move = true
+	
+	if damaged:
+		$CollisionShape2D.disabled = true
 	
 	
 

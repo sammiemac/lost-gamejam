@@ -10,7 +10,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$Timer.start()
 	
 	if anim_name == "fade out":
-		get_tree().change_scene("res://Levels/Level2.tscn")
+		get_tree().change_scene("res://Levels/Level3.tscn")
 
 
 func _on_Timer_timeout():
