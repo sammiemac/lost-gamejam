@@ -62,6 +62,7 @@ func _on_Lantern_reset():
 func _on_Spike_body_entered(body):
 	if body.is_in_group("Player"):
 		$AnimationPlayer.play("damage_spike")
+		$Player/Hurt.play()
 		$Player.damaged = true
 		$Player.can_move = false
 
