@@ -88,6 +88,10 @@ func _on_Light_body_entered(body):
 	if body.is_in_group("Player"):
 		level_complete = true
 		$AnimationPlayer.play("fade out")
+		Input.action_release("down")
+		Input.action_release("up")
+		Input.action_release("left")
+		Input.action_release("right")
 
 
 

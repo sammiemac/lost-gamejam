@@ -56,6 +56,10 @@ func _physics_process(delta):
 		$Checkpoints/Lamp/AnimatedSprite.play("on")
 		if not global.scene_done:
 			$AnimationPlayer.play("scene fade out")
+			Input.action_release("down")
+			Input.action_release("up")
+			Input.action_release("left")
+			Input.action_release("right")
 
 	if global.checkpoint >= 2:
 		$Checkpoints/Lamp2/CollisionShape2D.disabled = true
@@ -97,6 +101,7 @@ func _on_Timer_timeout():
 func _on_Spike_body_entered(body):
 	if body.is_in_group("Player"):
 		$AnimationPlayer.play("damage_spike")
+		$Player/Hurt.play()
 		$Player.damaged = true
 		$Player.can_move = false
 
@@ -125,6 +130,10 @@ func _on_Light_body_entered(body):
 	if body.is_in_group("Player"):
 		level_complete = true
 		$AnimationPlayer.play("fade out")
+		Input.action_release("down")
+		Input.action_release("up")
+		Input.action_release("left")
+		Input.action_release("right")
 
 
 func _on_Lamp_body_entered(body):
