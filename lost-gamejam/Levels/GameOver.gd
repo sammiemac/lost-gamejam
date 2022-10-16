@@ -16,6 +16,8 @@ func _on_Button_pressed():
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "fade out":
 		if global.level == 2:
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://Levels/Level2.tscn")
 		if global.level == 3:
+# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://Levels/Level3.tscn")

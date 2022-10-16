@@ -320,8 +320,6 @@ anims/no_damage = SubResource( 11 )
 wait_time = 3.0
 one_shot = true
 
-[connection signal="enemy_enter" from="Lantern" to="." method="_on_Lantern_enemy_enter"]
-[connection signal="enemy_exit" from="Lantern" to="." method="_on_Lantern_enemy_exit"]
 [connection signal="reset" from="Lantern" to="." method="_on_Lantern_reset"]
 [connection signal="body_entered" from="Spikes/Spike" to="." method="_on_Spike_body_entered"]
 [connection signal="body_entered" from="Spikes/Spike2" to="." method="_on_Spike_body_entered"]

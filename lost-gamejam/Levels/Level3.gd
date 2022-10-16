@@ -30,6 +30,12 @@ func _ready():
 	$Player.position = global.player_start
 
 
+func _process(_delta):
+	if Input.is_action_just_pressed("restart"):
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Levels/Level3.tscn")
+
+
 func _physics_process(delta):
 	
 	var player_pos = $Player.global_position
@@ -104,11 +110,14 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 	if anim_name == "fade out" and not level_complete:
 		global.deaths += 1
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Levels/GameOver.tscn")
 	elif anim_name == "fade out" and level_complete:
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Levels/Scene4.tscn")
 	
 	if anim_name == "scene fade out":
+# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Levels/Scene3.tscn")
 
 

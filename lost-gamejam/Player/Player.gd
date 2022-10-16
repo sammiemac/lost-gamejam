@@ -11,7 +11,7 @@ var can_move = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	# Handles walking and idle animations and motion
 	if Input.is_action_pressed("right") and can_move:
