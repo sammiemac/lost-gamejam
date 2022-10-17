@@ -8,6 +8,10 @@ onready var music = get_node("/root/Music")
 func _ready():
 	$AnimationPlayer.play("fade in")
 	music.play_music()
+	global.time_started = false
+	global.checkpoint = 0
+	global.player_start = Vector2(64, 32)
+
 
 
 func _on_Normal_mouse_entered():

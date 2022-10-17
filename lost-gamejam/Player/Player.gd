@@ -13,6 +13,10 @@ var can_move = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
 	
+	if Input.is_action_just_pressed("reset"):
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Screens/Menu.tscn")
+	
 	# Handles walking and idle animations and motion
 	if Input.is_action_pressed("right") and can_move:
 		velocity.x = player_speed

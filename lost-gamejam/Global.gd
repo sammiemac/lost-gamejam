@@ -19,6 +19,3 @@ var elapsed = 0
 var minutes = 0
 var seconds = 0
 var str_elapsed = ""
-
-func get_time():
-	pass

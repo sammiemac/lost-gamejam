@@ -44,7 +44,7 @@ func _process(_delta):
 		global.minutes = global.elapsed / 60
 		global.seconds = global.elapsed % 60
 		global.str_elapsed = "%02d : %02d" % [global.minutes, global.seconds]
-		print("elapsed: ", global.str_elapsed)
+#		print("elapsed: ", global.str_elapsed)
 
 
 func _physics_process(delta):
