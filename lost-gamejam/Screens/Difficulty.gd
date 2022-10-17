@@ -2,10 +2,12 @@ extends Control
 
 
 onready var global = get_node("/root/Global")
+onready var music = get_node("/root/Music")
 
 
 func _ready():
 	$AnimationPlayer.play("fade in")
+	music.play_music()
 
 
 func _on_Normal_mouse_entered():

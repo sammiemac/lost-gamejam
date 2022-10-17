@@ -7,7 +7,6 @@ onready var music = get_node("/root/Music")
 
 func _ready():
 	$AnimationPlayer.play("fade in")
-	music.play_music()
 	if global.lights_on:
 		$Shadow.visible = false
 

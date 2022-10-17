@@ -2,6 +2,7 @@ extends Node2D
 
 
 onready var global = get_node("/root/Global")
+onready var music = get_node("/root/Music")
 
 
 const FOLLOW_SPEED = 4.0
@@ -20,12 +21,24 @@ func _ready():
 		$Shadow.visible = false
 	if global.speedrun:
 		$AnimationPlayer.play("tut off")
+	if global.speedrun and not global.time_started:
+		global.time_start = OS.get_unix_time()
+		set_process(true)
+		global.time_started = true
 
 
 func _process(_delta):
 	if Input.is_action_just_pressed("restart"):
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Levels/Level2.tscn")
+	
+	if global.speedrun:
+		global.time_now = OS.get_unix_time()
+		global.elapsed = global.time_now - global.time_start
+		global.minutes = global.elapsed / 60
+		global.seconds = global.elapsed % 60
+		global.str_elapsed = "%02d : %02d" % [global.minutes, global.seconds]
+		print("elapsed: ", global.str_elapsed)
 
 
 func _physics_process(delta):

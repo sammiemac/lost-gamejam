@@ -37,6 +37,14 @@ func _process(_delta):
 	if Input.is_action_just_pressed("restart"):
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Levels/Level3.tscn")
+	
+	if global.speedrun:
+		global.time_now = OS.get_unix_time()
+		global.elapsed = global.time_now - global.time_start
+		global.minutes = global.elapsed / 60
+		global.seconds = global.elapsed % 60
+		global.str_elapsed = "%02d : %02d" % [global.minutes, global.seconds]
+		print("elapsed: ", global.str_elapsed)
 
 
 func _physics_process(delta):
@@ -57,7 +65,7 @@ func _physics_process(delta):
 		$Checkpoints/Lamp/CollisionShape2D.disabled = true
 		$Checkpoints/Lamp/Light2D.visible = true
 		$Checkpoints/Lamp/AnimatedSprite.play("on")
-		if not global.scene_done:
+		if not global.scene_done and not global.speedrun:
 			$AnimationPlayer.play("scene fade out")
 			Input.action_release("down")
 			Input.action_release("up")
@@ -117,12 +125,21 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "damage_spike":
 		$AnimationPlayer.play("fade out")
 
+	# Normal and Lights On mode
 	if anim_name == "fade out" and not level_complete:
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Screens/GameOver.tscn")
 	elif anim_name == "fade out" and level_complete:
 # warning-ignore:return_value_discarded
 		get_tree().change_scene("res://Screens/Scene4.tscn")
+	
+	# Speedrun mode
+	if anim_name == "fade out" and not level_complete and global.speedrun:
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Levels/Level3.tscn")
+	elif anim_name == "fade out" and level_complete and global.speedrun:
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Screens/End.tscn")
 	
 	if anim_name == "scene fade out":
 # warning-ignore:return_value_discarded
