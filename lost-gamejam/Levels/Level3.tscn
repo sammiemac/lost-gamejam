@@ -203,7 +203,6 @@ Even when you fade away..."
 align = 1
 
 [node name="Shadow" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]

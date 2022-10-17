@@ -8,9 +8,13 @@ func _ready():
 	$AnimationPlayer.play("fade in")
 
 
-func _on_Button_pressed():
-	print("pressed")
+func _on_TryAgain_pressed():
 	$AnimationPlayer.play("fade out")
+
+
+func _on_Menu_pressed():
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Screens/Menu.tscn")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

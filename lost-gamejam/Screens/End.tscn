@@ -83,6 +83,7 @@ margin_bottom = -32.0
 text = "##"
 
 [node name="Elapsed" type="Label" parent="Panel"]
+visible = false
 modulate = Color( 0.278431, 0.231373, 0.34902, 1 )
 margin_left = 240.0
 margin_top = 640.0
@@ -91,6 +92,7 @@ margin_bottom = 671.0
 text = "Speedrun time:"
 
 [node name="Time" type="Label" parent="Panel"]
+visible = false
 modulate = Color( 0.278431, 0.231373, 0.34902, 1 )
 margin_left = 1080.0
 margin_top = 640.0
