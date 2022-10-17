@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/scene3.png-1ca2633ef26fbe9817baf79e42a5fee2.stex"
+path="res://.import/scene3.png-aebf11a87c010f474126799c8f14571f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Levels/scene3.png"
-dest_files=[ "res://.import/scene3.png-1ca2633ef26fbe9817baf79e42a5fee2.stex" ]
+source_file="res://Screens/scene3.png"
+dest_files=[ "res://.import/scene3.png-aebf11a87c010f474126799c8f14571f.stex" ]
 
 [params]
 

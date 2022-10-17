@@ -203,6 +203,7 @@ Even when you fade away..."
 align = 1
 
 [node name="Shadow" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]
@@ -470,6 +471,30 @@ position = Vector2( 2208, 1248 )
 [node name="Spike23" parent="Spikes2" instance=ExtResource( 3 )]
 position = Vector2( 2272, 1248 )
 
+[node name="Spike26" parent="Spikes2" instance=ExtResource( 3 )]
+position = Vector2( 1440, 288 )
+rotation = 1.5708
+
+[node name="Spike27" parent="Spikes2" instance=ExtResource( 3 )]
+position = Vector2( 1440, 352 )
+rotation = 1.5708
+
+[node name="Spike28" parent="Spikes2" instance=ExtResource( 3 )]
+position = Vector2( 1440, 416 )
+rotation = 1.5708
+
+[node name="Spike29" parent="Spikes2" instance=ExtResource( 3 )]
+position = Vector2( 1504, 800 )
+rotation = -1.5708
+
+[node name="Spike30" parent="Spikes2" instance=ExtResource( 3 )]
+position = Vector2( 1504, 864 )
+rotation = -1.5708
+
+[node name="Spike31" parent="Spikes2" instance=ExtResource( 3 )]
+position = Vector2( 1504, 928 )
+rotation = -1.5708
+
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 0, 0, 0, 0 )
 margin_left = -64.0
@@ -563,5 +588,11 @@ one_shot = true
 [connection signal="body_entered" from="Spikes2/Spike21" to="." method="_on_Spike_body_entered"]
 [connection signal="body_entered" from="Spikes2/Spike22" to="." method="_on_Spike_body_entered"]
 [connection signal="body_entered" from="Spikes2/Spike23" to="." method="_on_Spike_body_entered"]
+[connection signal="body_entered" from="Spikes2/Spike26" to="." method="_on_Spike_body_entered"]
+[connection signal="body_entered" from="Spikes2/Spike27" to="." method="_on_Spike_body_entered"]
+[connection signal="body_entered" from="Spikes2/Spike28" to="." method="_on_Spike_body_entered"]
+[connection signal="body_entered" from="Spikes2/Spike29" to="." method="_on_Spike_body_entered"]
+[connection signal="body_entered" from="Spikes2/Spike30" to="." method="_on_Spike_body_entered"]
+[connection signal="body_entered" from="Spikes2/Spike31" to="." method="_on_Spike_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

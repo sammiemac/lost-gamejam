@@ -11,7 +11,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	
 	if anim_name == "fade out":
 # warning-ignore:return_value_discarded
-		get_tree().change_scene("res://Levels/End.tscn")
+		get_tree().change_scene("res://Screens/End.tscn")
 
 
 func _on_Timer_timeout():

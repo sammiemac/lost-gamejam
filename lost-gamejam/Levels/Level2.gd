@@ -15,6 +15,11 @@ func _ready():
 	global.level = 2
 	$AnimationPlayer.play("fade in")
 	$AnimationPlayer.play("tut fade in")
+	
+	if global.lights_on or global.speedrun:
+		$Shadow.visible = false
+	if global.speedrun:
+		$AnimationPlayer.play("tut off")
 
 
 func _process(_delta):
@@ -61,6 +66,7 @@ func _on_Lantern_reset():
 
 func _on_Spike_body_entered(body):
 	if body.is_in_group("Player"):
+		global.deaths += 1
 		$AnimationPlayer.play("damage_spike")
 		$Player/Hurt.play()
 		$Player.damaged = true
@@ -73,15 +79,22 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	
 	if anim_name == "damage_enemy" or anim_name == "damage_spike":
 		$AnimationPlayer.play("fade out")
-
+	
+	# Normal and Lights On mode
 	if anim_name == "fade out" and not level_complete:
-		global.deaths += 1
 # warning-ignore:return_value_discarded
-		get_tree().change_scene("res://Levels/GameOver.tscn")
+		get_tree().change_scene("res://Screens/GameOver.tscn")
 	elif anim_name == "fade out" and level_complete:
-#		print("change scene")
 # warning-ignore:return_value_discarded
-		get_tree().change_scene("res://Levels/Scene2.tscn")
+		get_tree().change_scene("res://Screens/Scene2.tscn")
+	
+	# Speedrun mode
+	if anim_name == "fade out" and not level_complete and global.speedrun:
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Levels/Level2.tscn")
+	elif anim_name == "fade out" and level_complete and global.speedrun:
+# warning-ignore:return_value_discarded
+		get_tree().change_scene("res://Levels/Level3.tscn")
 
 
 func _on_Light_body_entered(body):

@@ -1,0 +1,138 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Screens/Difficulty.gd" type="Script" id=1]
+[ext_resource path="res://new_theme.tres" type="Theme" id=2]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="Difficulty" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1440.0
+margin_bottom = 800.0
+theme = ExtResource( 2 )
+
+[node name="Normal" type="Button" parent="Panel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 32.0
+margin_top = -208.0
+margin_right = 542.0
+margin_bottom = -122.0
+text = "NORMAL"
+align = 0
+
+[node name="LightsOn" type="Button" parent="Panel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 32.0
+margin_top = -48.0
+margin_right = 797.0
+margin_bottom = 38.0
+text = "LIGHTS ON"
+align = 0
+
+[node name="Speedrun" type="Button" parent="Panel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 32.0
+margin_top = 112.0
+margin_right = 712.0
+margin_bottom = 198.0
+text = "SPEEDRUN"
+align = 0
+
+[node name="TextNormal" type="Label" parent="Panel"]
+visible = false
+margin_left = 768.0
+margin_top = 192.0
+margin_right = 1344.0
+margin_bottom = 461.0
+text = "Play the game at its  intended difficulty. 
+
+All the lights are off and you need to use the LANTERN to find your way out."
+autowrap = true
+
+[node name="TextLightsOn" type="Label" parent="Panel"]
+visible = false
+margin_left = 768.0
+margin_top = 192.0
+margin_right = 1344.0
+margin_bottom = 597.0
+text = "Plays like normal mode, but all the lights are on.
+
+Use this mode if you want to practice the correct paths, or if you want an easier experience."
+autowrap = true
+
+[node name="TextSpeedrun" type="Label" parent="Panel"]
+visible = false
+margin_left = 768.0
+margin_top = 192.0
+margin_right = 1344.0
+margin_bottom = 563.0
+text = "Plays like lights on mode, but it skips all the cutscenes and displays a timer at the end.
+
+Use this mode if you want a quick experience, or if you want to time your run."
+autowrap = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+"anims/fade in" = SubResource( 2 )
+"anims/fade out" = SubResource( 3 )
+
+[connection signal="mouse_entered" from="Panel/Normal" to="." method="_on_Normal_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Normal" to="." method="_on_Normal_mouse_exited"]
+[connection signal="pressed" from="Panel/Normal" to="." method="_on_Normal_pressed"]
+[connection signal="mouse_entered" from="Panel/LightsOn" to="." method="_on_LightsOn_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/LightsOn" to="." method="_on_LightsOn_mouse_exited"]
+[connection signal="pressed" from="Panel/LightsOn" to="." method="_on_LightsOn_pressed"]
+[connection signal="mouse_entered" from="Panel/Speedrun" to="." method="_on_Speedrun_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/Speedrun" to="." method="_on_Speedrun_mouse_exited"]
+[connection signal="pressed" from="Panel/Speedrun" to="." method="_on_Speedrun_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

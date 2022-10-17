@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://new_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Levels/End.gd" type="Script" id=2]
+[ext_resource path="res://Screens/End.gd" type="Script" id=2]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
